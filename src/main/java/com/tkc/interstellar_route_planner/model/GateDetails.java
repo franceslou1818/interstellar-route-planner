@@ -1,19 +1,24 @@
 package com.tkc.interstellar_route_planner.model;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
-public class GateDetails {
+public class GateDetails implements Comparable<GateDetails> {
 
     private String id;
     private String name;
-    private List<Connection> connections;
+    private HashMap<GateDetails, Integer> connectingGates = new HashMap<>();
+
+    private Integer distance = Integer.MAX_VALUE; // mimic infinity in dijkstra algorithm
+    private List<GateDetails> cheapestPath = new LinkedList<>();
 
     public GateDetails() {}
 
-    public GateDetails(String id, String name, List<Connection> connections) {
+    public GateDetails(String id, String name, HashMap<GateDetails, Integer> connectingGates) {
         this.id = id;
         this.name = name;
-        this.connections = connections;
+        this.connectingGates = connectingGates;
     }
 
     public String getId() {
@@ -29,37 +34,38 @@ public class GateDetails {
     public void setName(String name) {
         this.name = name;
     }
-    public List<Connection> getConnections() {
-        return connections;
-    }
-    public void setConnections(List<Connection> connections) {
-        this.connections = connections;
+
+    public HashMap<GateDetails, Integer> getConnectingGates() {
+        return connectingGates;
     }
 
-    public class Connection {
-
-        private String id;
-        private int hu;
-
-        public Connection() {}
-
-        public Connection(String id, int hu) {
-            this.id = id;
-            this.hu = hu;
-        }
-
-        public String getId() {
-            return id;
-        }
-        public void setId(String id) {
-            this.id = id;
-        }
-        public int getHu() {
-            return hu;
-        }
-        public void setHu(int hu) {
-            this.hu = hu;
-        }
-
+    public void setConnectingGates(HashMap<GateDetails, Integer> connectingGates) {
+        this.connectingGates = connectingGates;
     }
+
+    public void addConnectingGate(GateDetails gateDetails, int hyperplaneUnit) {
+        connectingGates.put(gateDetails, hyperplaneUnit);
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
+    }
+
+    public List<GateDetails> getCheapestPath() {
+        return cheapestPath;
+    }
+
+    public void setCheapestPath(List<GateDetails> cheapestPath) {
+        this.cheapestPath = cheapestPath;
+    }
+
+    @Override
+    public int compareTo(GateDetails gateDetails) {
+        return Integer.compare(this.distance, gateDetails.distance);
+    }
+
 }

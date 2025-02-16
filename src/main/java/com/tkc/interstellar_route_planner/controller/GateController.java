@@ -1,7 +1,5 @@
 package com.tkc.interstellar_route_planner.controller;
 
-import com.tkc.interstellar_route_planner.model.Gate;
-import com.tkc.interstellar_route_planner.model.GateDetails;
 import com.tkc.interstellar_route_planner.service.GateService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,19 +17,19 @@ public class GateController {
 
     // GET: /gates - returns a list of gates with their information
     @GetMapping()
-    public List<GateDetails> getAllGateDetails() {
+    public List<Object> getAllGateDetails() {
         return gateService.getAllGateDetails();
     }
 
     // GET: /gates/{gateCode} - returns the details of a single gate
     @GetMapping("{gateId}")
-    public GateDetails getGateDetails(@PathVariable("gateId") String gateId) {
+    public Object getGateDetails(@PathVariable("gateId") String gateId) {
         return gateService.getGateDetails(gateId);
     }
 
     // GET: /gates/{gateCode}/to/{targetGateCode} - returns the cheapest route from gateCode to targetGateCode
     @RequestMapping(value = "/{gateCode}/to/{targetGateCode}", method= RequestMethod.GET)
-    public int getSomething(@PathVariable("gateCode") String gateCode, @PathVariable("targetGateCode") String targetGateCode) {
+    public Double getSomething(@PathVariable("gateCode") String gateCode, @PathVariable("targetGateCode") String targetGateCode) {
         return gateService.getCheapestRoute(gateCode, targetGateCode);
     }
 

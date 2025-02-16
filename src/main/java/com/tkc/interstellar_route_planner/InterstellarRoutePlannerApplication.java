@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class InterstellarRoutePlannerApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(InterstellarRoutePlannerApplication.class, args);
+
 	}
 
 }
