@@ -29,8 +29,9 @@ public class GateController {
 
     // GET: /gates/{gateCode}/to/{targetGateCode} - returns the cheapest route from gateCode to targetGateCode
     @RequestMapping(value = "/{gateCode}/to/{targetGateCode}", method= RequestMethod.GET)
-    public Double getSomething(@PathVariable("gateCode") String gateCode, @PathVariable("targetGateCode") String targetGateCode) {
+    public Double getCheapestRoute(@PathVariable("gateCode") String gateCode, @PathVariable("targetGateCode") String targetGateCode) {
         return gateService.getCheapestRoute(gateCode, targetGateCode);
     }
+
 
 }
