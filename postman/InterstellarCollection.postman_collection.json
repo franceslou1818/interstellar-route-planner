@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "dd98ef1e-a443-4779-b311-6a6ba312b33a",
+		"name": "InterstellarCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42359286"
+	},
+	"item": [
+		{
+			"name": "Get All Gates",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/gates",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Details of ALD Gate",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/gates/ALD",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gates",
+						"ALD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cheapest route from SOL to VEG",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/gates/SOL/to/VEG",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gates",
+						"SOL",
+						"to",
+						"VEG"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
