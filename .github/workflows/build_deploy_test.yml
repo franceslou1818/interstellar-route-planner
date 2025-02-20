@@ -29,6 +29,8 @@ jobs:
         with:
           name: interstellar
           path: target/
+
+
   terraform:
     name: "Terraform"
     needs: build
@@ -41,10 +43,16 @@ jobs:
         working-directory: terraform2/
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: interstellar
+          path: target/
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: 1.10.5
           terraform_wrapper: false
