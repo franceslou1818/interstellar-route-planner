@@ -33,7 +33,7 @@ public class GateController {
 
     @GetMapping("testing")
     public Object getTesting() {
-        return "testing2";
+        return "testing terraform github actions";
     }
 
     // GET: /gates/{gateCode}/to/{targetGateCode} - returns the cheapest route from gateCode to targetGateCode
