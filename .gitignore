@@ -33,5 +33,7 @@ build/
 .vscode/
 
 ### Terraform ###
-terraform/.terraform*
-terraform/terraform*
+terraform1/.terraform*
+terraform1/terraform*
+terraform2/.terraform*
+terraform2/terraform*
