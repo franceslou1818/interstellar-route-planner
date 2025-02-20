@@ -1,14 +1,18 @@
-name: "Build, Deploy and Test"
+name: "Build and Deploy"
 
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    defaults:
+      run:
+        working-directory: ./
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
@@ -19,37 +23,6 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - uses: actions/checkout@v4
-
-      - run: mkdir -p target/
-
-      - run: echo hello > target/interstellar.jar
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: interstellar
-          path: target/
-
-
-  terraform:
-    name: "Terraform"
-    needs: build
-    runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    defaults:
-      run:
-        working-directory: terraform2/
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: interstellar
-          path: target/
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1

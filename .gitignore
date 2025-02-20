@@ -33,7 +33,9 @@ build/
 .vscode/
 
 ### Terraform ###
-terraform1/.terraform*
-terraform1/terraform*
-terraform2/.terraform*
-terraform2/terraform*
+.terraform*
+terraform*
+init_AWS_by_Terraform/.terraform*
+init_AWS_by_Terraform/terraform*
+
+interstellarForAWS.zip

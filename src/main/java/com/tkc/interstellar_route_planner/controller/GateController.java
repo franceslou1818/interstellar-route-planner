@@ -33,7 +33,7 @@ public class GateController {
 
     @GetMapping("testing")
     public Object getTesting() {
-        return "testing Github actions";
+        return "testing Github actions2";
     }
 
     // GET: /gates/{gateCode}/to/{targetGateCode} - returns the cheapest route from gateCode to targetGateCode
