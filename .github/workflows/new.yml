@@ -1,4 +1,4 @@
-name: "Build, Deploy and Test"
+name: "Build and Deploy"
 
 on:
   push:
@@ -24,17 +24,23 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - name: LS
+      - name: LS1
         run: ls
 
       - name: CD into Terraform
         run: cd terraform2
+
+      - name: LS2
+        run: ls
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.10.5
           terraform_wrapper: false
+
+      - name: LS3
+        run: ls
 
       - name: Terraform Format
         id: fmt
