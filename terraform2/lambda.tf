@@ -2,8 +2,8 @@
 provider "aws" {
   region = "eu-north-1"
   # add keys here
-  access_key = "xyz"
-  secret_key = "xyz"
+  # access_key = {{ secrets.AWS_ACCESS_KEY_ID }}
+  # secret_key = {{ secrets.AWS_SECRET_ACCESS_KEY }}
 }
 
 resource "aws_iam_role" "lambda_role2" {
@@ -46,21 +46,21 @@ resource "aws_lambda_function" "frances-lambda2" {
 
   # If the file is not in the current working directory you will need to include a
   # path.module in the filename.
-  filename      = "${path.module}/../target/interstellar.jar"
+  filename = "${path.module}/../target/interstellar.jar"
   # filename      = data.archive_file.lambda_jar.output_path
   # source_code_hash  = "${path.module}/../target/interstellar.jar"
-  source_code_hash  = data.archive_file.lambda_jar.output_base64sha256
+  source_code_hash = data.archive_file.lambda_jar.output_base64sha256
   # source_code_hash = "interstellar.jar"
 
-  publish = true
+  publish       = true
   function_name = "frances-lambda2"
   role          = aws_iam_role.lambda_role2.arn
   handler       = "com.tkc.interstellar_route_planner.handler.StreamLambdaHandler::handleRequest"
 
   # source_code_hash = data.archive_file.lambda.output_base64sha256
 
-  runtime = "java17"
-  timeout = 900
+  runtime     = "java17"
+  timeout     = 900
   memory_size = 1024
 
   environment {
