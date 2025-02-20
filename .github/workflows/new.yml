@@ -39,6 +39,9 @@ jobs:
           terraform_version: 1.10.5
           terraform_wrapper: false
 
+      - name: CD into Terraform
+        run: cd ./terraform2
+
       - name: LS3
         run: ls
 
