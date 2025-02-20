@@ -61,7 +61,7 @@
 							"pm.test(\"Results should have the correct info.\", function () {",
 							"    const response = pm.response.json();",
 							"    pm.expect(response.gateID).to.eq('ALD');",
-							"    pm.expect(response.gateName).to.eq('Alderma');",
+							"    pm.expect(response.gateName).to.eq('Aldermain');",
 							"    pm.expect(response.connections.length).to.eq(3);",
 							"});"
 						],
