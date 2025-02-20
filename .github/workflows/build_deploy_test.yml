@@ -19,13 +19,13 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - run: mkdir -p target/
 
       - run: echo hello > target/interstellar.jar
 
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v4
         with:
           name: interstellar
           path: target/
