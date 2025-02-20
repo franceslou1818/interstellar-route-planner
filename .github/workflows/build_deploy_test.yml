@@ -50,14 +50,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Self
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create test reults directory
         run: |
           mkdir postman/test_results
 
       - name: Install Node
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           node-version: "20"
 
@@ -71,7 +71,7 @@ jobs:
           newman run "postman/InterstellarCollection.postman_collection.json" -e "postman/aws2.postman_environment.json" -r htmlextra --reporter-htmlextra-export postman/test_results/test_results_report.html
 
       - name: Publish Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Reports
           path: postman/test_results
