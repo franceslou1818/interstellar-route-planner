@@ -31,7 +31,13 @@ Run the query in `create-local-db.sql` using your local MySQL.
 
 + change `spring.datasource.username` and `spring.datasource.password` as per your mysql installation
 
-**4. Build and run the app using maven**
++ Comment out the property `spring.datasource.url` for deployment. Use the local property.
+
+**4. Open and change `pom.xml`**
+
++ Comment out the `<build><plugin>` for deployment. Use the local plugins.
+
+**5. Build and run the app using maven**
 
 ```
 mvn package
@@ -48,13 +54,17 @@ mvn spring-boot:run
 
 The app defines following CRUD APIs.
 
-    GET: /transport/{distance}?passengers={number}&parking={days}
+    GET: {{baseUrl}}/transport/{distance}?passengers={number}&parking={days}
 
-    GET: /gates
+    GET: {{baseUrl}}/gates
 
-    GET: /gates/{gateCode}
+    GET: {{baseUrl}}/gates/{gateCode}
     
-    GET: /gates/{gateCode}/to/{targetGateCode}
+    GET: {{baseUrl}}/gates/{gateCode}/to/{targetGateCode}
+
+where `{{baseUrl}}` is `https://xdzx3lpsdk.execute-api.eu-north-1.amazonaws.com/dev`
+
+Example of a public endpoint: `https://xdzx3lpsdk.execute-api.eu-north-1.amazonaws.com/dev/gates`
 
 You can test them using postman or any other rest client.
 You can use the supplied postman collection and environment files in directory `postman/`
