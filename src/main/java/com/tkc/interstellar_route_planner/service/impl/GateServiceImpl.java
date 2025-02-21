@@ -2,6 +2,7 @@ package com.tkc.interstellar_route_planner.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tkc.interstellar_route_planner.exception.GateNotFoundException;
 import com.tkc.interstellar_route_planner.model.Gate;
 import com.tkc.interstellar_route_planner.model.GateDetails;
 import com.tkc.interstellar_route_planner.repository.GateRepository;
@@ -27,6 +28,10 @@ public class GateServiceImpl implements GateService {
     }
 
     public Object getGateDetails(String gateId) {
+
+        if(gateRepository.findById(gateId).isEmpty())
+            throw new GateNotFoundException("Requested gate does not exist");
+
         Gate gate = gateRepository.findById(gateId).get();
 
         Map<String, Object> map = new HashMap<>();
