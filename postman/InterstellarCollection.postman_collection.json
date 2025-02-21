@@ -19,8 +19,8 @@
 							"",
 							"pm.test(\"Results should be an array and not empty.\", function () {",
 							"    const response = pm.response.json();",
-							"    pm.expect(response).to.not.be.empty;",
-							"    pm.expect(response).to.be.a('array');",
+							"    pm.expect(response.data).to.not.be.empty;",
+							"    pm.expect(response.data).to.be.a('array');",
 							"",
 							"});"
 						],

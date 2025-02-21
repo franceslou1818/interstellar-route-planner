@@ -2,7 +2,10 @@ package com.tkc.interstellar_route_planner.controller;
 
 import com.tkc.interstellar_route_planner.model.Gate;
 import com.tkc.interstellar_route_planner.repository.GateRepository;
+import com.tkc.interstellar_route_planner.response.ResponseHandler;
 import com.tkc.interstellar_route_planner.service.GateService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +25,9 @@ public class GateController {
 
     // GET: /gates - returns a list of gates with their information
     @GetMapping()
-    public List<Object> getAllGateDetails() {
-        return gateService.getAllGateDetails();
+    public ResponseEntity<Object> getAllGateDetails() {
+        return ResponseHandler.responseBuilder("Requested gates are given here",
+                HttpStatus.OK, gateService.getAllGateDetails());
     }
 
     // GET: /gates/{gateCode} - returns the details of a single gate
