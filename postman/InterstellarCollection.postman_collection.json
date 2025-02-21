@@ -97,7 +97,10 @@
 					"script": {
 						"exec": [
 							"pm.test(\"SOL to VEG route should cost 46.\", function () {",
-							"    pm.expect(pm.response.json()).to.eq(46.0);",
+							"    const response = pm.response.json();",
+							"    pm.expect(response.route).to.eq('SOL -> PRX -> ALT -> VEG');",
+							"    pm.expect(response.cost).to.eq(46.0);",
+							"    pm.expect(response.distance_hu).to.eq(460);",
 							"});"
 						],
 						"type": "text/javascript",
@@ -171,6 +174,137 @@
 							"key": "parking",
 							"value": "2"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Gate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// pm.test(\"New gate successfully created.\", function () {",
+							"//     pm.expect(pm.response.json()).to.eq(\"Gate successfully created\");",
+							"// });"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"NG1\",\n    \"name\":\"NewGate\",\n    \"connections\":\n        [{ \"id\": \"SOL\", \"hu\": \"500\" },\n        { \"id\": \"DEN\", \"hu\": \"120\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gates",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Gate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// pm.test(\"New gate successfully created.\", function () {",
+							"//     pm.expect(pm.response.json()).to.eq(\"Gate successfully created\");",
+							"// });"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"NewGateUpdated\",\n    \"connections\":\n        [{ \"id\": \"SOL\", \"hu\": \"500\" },\n        { \"id\": \"DEN\", \"hu\": \"120\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/gates/NG",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gates",
+						"NG"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Gate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/gates/NG1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gates",
+						"NG1"
 					]
 				}
 			},

@@ -8,7 +8,7 @@ public interface GateService {
 
     Object getGateDetails(String gateId);
     List<Object> getAllGateDetails();
-    Double getCheapestRoute(String gateCode, String targetGateCode);
+    Object getCheapestRoute(String gateCode, String targetGateCode);
     void saveGate(Gate gate);
     void deleteGate(String id);
 }

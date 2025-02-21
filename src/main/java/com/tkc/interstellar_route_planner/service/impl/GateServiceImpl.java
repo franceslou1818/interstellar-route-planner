@@ -53,12 +53,16 @@ public class GateServiceImpl implements GateService {
     }
 
     @Override
-    public Double getCheapestRoute(String gateCode, String targetGateCode) {
+    public Object getCheapestRoute(String gateCode, String targetGateCode) {
+        Map<String, Object> map = new HashMap<>();
         initGates();
         calculateShortestPath(allGates.get(gateCode));
-        printPaths(Arrays.asList(allGates.get(gateCode), allGates.get(targetGateCode)));
+        String paths = getPaths(allGates.get(targetGateCode));
         int distanceFromSrcToTarget = allGates.get(targetGateCode).getDistance();
-        return distanceFromSrcToTarget*SPACE_FLIGHT_COST_PER_HU;
+        map.put("route", paths);
+        map.put("distance_hu", distanceFromSrcToTarget);
+        map.put("cost", distanceFromSrcToTarget*SPACE_FLIGHT_COST_PER_HU);
+        return map;
     }
 
     public void saveGate(Gate gate) {
@@ -133,15 +137,17 @@ public class GateServiceImpl implements GateService {
         }
     }
 
-    private static void printPaths(List<GateDetails> gates) {
-        gates.forEach(gate -> {
-            String path = gate.getCheapestPath().stream()
-                    .map(GateDetails::getId)
-                    .collect(Collectors.joining(" -> "));
-            System.out.println(path.isBlank()
-                    ? "%s : %s".formatted(gate.getId(), gate.getDistance())
-                    : "%s -> %s : %s".formatted(path, gate.getId(), gate.getDistance()));
-        });
+    private static String getPaths(GateDetails targetGate) {
+        StringBuilder pathRet = new StringBuilder();
+
+        String path = targetGate.getCheapestPath().stream()
+                .map(GateDetails::getId)
+                .collect(Collectors.joining(" -> "));
+
+        pathRet.append(path);
+        pathRet.append(" -> " + targetGate.getId());
+
+        return pathRet.toString();
 
     }
 

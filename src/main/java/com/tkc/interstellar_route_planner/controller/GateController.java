@@ -34,12 +34,12 @@ public class GateController {
 
     @GetMapping("testing")
     public Object getTesting() {
-        return "Test Swagger";
+        return "Test Refactored";
     }
 
     // GET: /gates/{gateCode}/to/{targetGateCode} - returns the cheapest route from gateCode to targetGateCode
     @RequestMapping(value = "/{gateCode}/to/{targetGateCode}", method= RequestMethod.GET)
-    public Double getCheapestRoute(@PathVariable("gateCode") String gateCode, @PathVariable("targetGateCode") String targetGateCode) {
+    public Object getCheapestRoute(@PathVariable("gateCode") String gateCode, @PathVariable("targetGateCode") String targetGateCode) {
         return gateService.getCheapestRoute(gateCode, targetGateCode);
     }
 
