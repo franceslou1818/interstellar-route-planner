@@ -34,7 +34,7 @@ public class GateController {
 
     @GetMapping("testing")
     public Object getTesting() {
-        return "Tested";
+        return "Test Swagger";
     }
 
     // GET: /gates/{gateCode}/to/{targetGateCode} - returns the cheapest route from gateCode to targetGateCode
