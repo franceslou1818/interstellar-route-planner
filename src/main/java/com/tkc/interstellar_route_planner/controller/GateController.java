@@ -6,6 +6,7 @@ import com.tkc.interstellar_route_planner.service.GateService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/gates")
@@ -33,7 +34,7 @@ public class GateController {
 
     @GetMapping("testing")
     public Object getTesting() {
-        return "testing Github actions2";
+        return "Tested";
     }
 
     // GET: /gates/{gateCode}/to/{targetGateCode} - returns the cheapest route from gateCode to targetGateCode
@@ -42,10 +43,34 @@ public class GateController {
         return gateService.getCheapestRoute(gateCode, targetGateCode);
     }
 
-    @PostMapping
-    public Gate saveGate(@RequestBody Gate gate) {
-        return gateRepository.save(gate);
 
+    @RequestMapping(method = RequestMethod.POST)
+    public String createGate(@RequestBody Object gate) {
+        Map map = (Map) gate;
+        Gate newGate = new Gate();
+        newGate.setName((String) map.get("name"));
+        newGate.setId((String) map.get("id"));
+        newGate.setConnections(map.get("connections").toString());
+        gateService.saveGate(newGate);
+        return "Gate successfully created";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public String updateGate(@PathVariable("id") String id, @RequestBody Object body) {
+        Map map = (Map) body;
+        Gate newGate = new Gate();
+        newGate.setId(id);
+        newGate.setName((String) map.get("name"));
+        newGate.setConnections(map.get("connections").toString());
+        gateService.saveGate(newGate);
+        return "Gate successfully updated";
+    }
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public String updateGate(@PathVariable("id") String id) {
+        gateService.deleteGate(id);
+        return "Gate successfully deleted";
     }
 
 

@@ -67,28 +67,30 @@
 		<finalName>interstellar</finalName>
 		<plugins>
 
-<!--			<plugin>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--			</plugin>-->
+			<!--Use below plugin when building locally-->
+			<!--<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>-->
 
-<!--			<plugin>-->
-<!--				&lt;!&ndash; Build an executable JAR &ndash;&gt;-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-jar-plugin</artifactId>-->
-<!--				<version>3.1.0</version>-->
-<!--				<configuration>-->
-<!--					<archive>-->
-<!--						<manifest>-->
-<!--							<addClasspath>true</addClasspath>-->
-<!--							<classpathPrefix>lib/</classpathPrefix>-->
-<!--							<mainClass>com.tkc.interstellar_route_planner.InterstellarRoutePlannerApplication</mainClass>-->
-<!--						</manifest>-->
-<!--					</archive>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
+			<!--Use below plugin when building locally-->
+			<!-- Build an executable JAR -->
+			<!--<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.tkc.interstellar_route_planner.InterstellarRoutePlannerApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>-->
 
-<!--			Use for building for deployment-->
+			<!--Use below plugin when building for deployment-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>

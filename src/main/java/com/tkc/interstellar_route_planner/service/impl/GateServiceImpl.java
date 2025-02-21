@@ -61,6 +61,14 @@ public class GateServiceImpl implements GateService {
         return distanceFromSrcToTarget*SPACE_FLIGHT_COST_PER_HU;
     }
 
+    public void saveGate(Gate gate) {
+        gateRepository.save(gate);
+    }
+
+    public void deleteGate(String id) {
+        gateRepository.deleteById(id);
+    }
+
     private void initGates() {
         List<Gate> gates = gateRepository.findAll();
         for (Gate gate : gates) {
